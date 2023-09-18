@@ -30,23 +30,6 @@
 		<dependency>
 			<groupId>org.junit.jupiter</groupId>
 			<artifactId>junit-jupiter</artifactId>
-			<version>${junit-version}</version>
-			<scope>test</scope>
-		</dependency>
-
-		<!-- https://mvnrepository.com/artifact/org.junit.platform/junit-platform-launcher -->
-		<dependency>
-			<groupId>org.junit.platform</groupId>
-			<artifactId>junit-platform-launcher</artifactId>
-			<version>${junit-launcher-version}</version>
-			<scope>test</scope>
-		</dependency>
-
-		<!-- https://mvnrepository.com/artifact/org.junit.platform/junit-platform-suite -->
-		<dependency>
-			<groupId>org.junit.platform</groupId>
-			<artifactId>junit-platform-suite</artifactId>
-			<version>${junit-launcher-version}</version>
 			<scope>test</scope>
 		</dependency>
 
@@ -202,6 +185,17 @@
 			<version>2.15.2</version>
 		</dependency>
 	</dependencies>
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.junit</groupId>
+				<artifactId>junit-bom</artifactId>
+				<version>${junit-version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
 	<build>
 		<resources>
 			<resource>
@@ -209,42 +203,10 @@
 			</resource>
 		</resources>
 		<plugins>
-			<!-- <plugin>
-				<groupId>de.sormuras.junit</groupId>
-				<artifactId>junit-platform-maven-plugin</artifactId>
-				<version>1.1.6</version>
-				<extensions>true</extensions>
-				<configuration>
-					<tweaks>
-						<failIfNoTests>false</failIfNoTests>
-					</tweaks>
-					<parameters>
-						<junit.jupiter.extensions.autodetection.enabled>true</junit.jupiter.extensions.autodetection.enabled>
-						<junit.jupiter.execution.parallel.enabled>${parallel-test}</junit.jupiter.execution.parallel.enabled>
-						<junit.jupiter.execution.parallel.mode.default>concurrent</junit.jupiter.execution.parallel.mode.default>
-						<junit.jupiter.execution.parallel.mode.classes.default>concurrent</junit.jupiter.execution.parallel.mode.classes.default>
-						<junit.jupiter.execution.parallel.config.dynamic.factor>0.8</junit.jupiter.execution.parallel.config.dynamic.factor> 
-						<junit.jupiter.execution.parallel.config.custom.class>com.planittesting.jupitertoys.tests.support.CustomJUnitParallelStrategy</junit.jupiter.execution.parallel.config.custom.class>
-						<junit.jupiter.execution.parallel.config.strategy>${parallel-strategy}</junit.jupiter.execution.parallel.config.strategy>
-						<junit.jupiter.execution.parallel.config.fixed.parallelism>${parallel-fixed-level}</junit.jupiter.execution.parallel.config.fixed.parallelism> 
-						<junit.platform.output.capture.stdout>true</junit.platform.output.capture.stdout>
-						<junit.platform.output.capture.stderr>true</junit.platform.output.capture.stderr>
-						<cucumber.junit-platform.naming-strategy>long</cucumber.junit-platform.naming-strategy>
-						<cucumber.execution.parallel.enabled>${parallel-test}</cucumber.execution.parallel.enabled>
-						<cucumber.execution.parallel.config.strategy>${parallel-strategy}</cucumber.execution.parallel.config.strategy>
-						<cucumber.execution.parallel.config.fixed.parallelism>${parallel-fixed-level}</cucumber.execution.parallel.config.fixed.parallelism>
-						<cucumber.execution.parallel.config.custom.class>com.planittesting.jupitertoys.tests.support.CustomJUnitParallelStrategy</cucumber.execution.parallel.config.custom.class>
-						<cucumber.publish.quiet>true</cucumber.publish.quiet>
-						<cucumber.plugin>pretty</cucumber.plugin>
-					</parameters>
-					<tags>${include-tags}</tags>
-					<isolation>NONE</isolation>
-				</configuration>
-			</plugin> -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-surefire-plugin</artifactId>
-				<version>3.0.0-M8</version>
+				<version>3.1.2</version>
 				<configuration>
 					<systemPropertyVariables>
 						<org.slf4j.simpleLogger.defaultLogLevel>${log-level}</org.slf4j.simpleLogger.defaultLogLevel>
@@ -279,7 +241,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.10.1</version>
+				<version>3.11.0</version>
 				<configuration>
 					<release>${java-version}</release>
 				</configuration>
