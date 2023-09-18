@@ -1,0 +1,7 @@
+{
+    "java.configuration.updateBuildConfiguration": "automatic",
+    "cucumberautocomplete.steps": [
+        "src/test/java/com/planittesting/jupitertoys/bdd/steps/**/*.java"
+    ],
+    "java.compile.nullAnalysis.mode": "automatic"
+}
