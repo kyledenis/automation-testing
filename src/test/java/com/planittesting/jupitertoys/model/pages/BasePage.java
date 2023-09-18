@@ -1,8 +1,5 @@
 package com.planittesting.jupitertoys.model.pages;
 
-import com.planittesting.jupitertoys.model.components.dialogs.LoginDialog;
-
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 /**
@@ -32,40 +29,11 @@ import org.openqa.selenium.WebDriver;
  * from there.
  * </p>
  */
-public abstract class BasePage<T> {
+public abstract class BasePage {
 
 	protected final WebDriver driver;
 
 	public BasePage(WebDriver driver) {
 		this.driver = driver;
-	}
-
-	public ContactPage clickContactMenu() {
-		driver.findElement(By.id("menu-contact")).click();
-		return new ContactPage(driver);
-	}
-
-	@SuppressWarnings("unchecked")
-	public LoginDialog<T> clickLoginMenu() {
-		driver.findElement(By.id("menu-login")).click();
-		return new LoginDialog<T>(driver.findElement(By.id("login-modal")), (T)this);
-	}
-
-	public ShopPage clickShopMenu() {
-		driver.findElement(By.id("menu-shop")).click();
-		return new ShopPage(driver);
-	}
-
-	public int getCartCount() {
-		return Integer.parseInt(driver.findElement(By.id("cart-count")).getText());
-	}
-	
-	public String getUser() {
-		return driver.findElement(By.id("login-greeting")).getText();
-	}
-
-	public CartPage clickCartMenu() {
-		driver.findElement(By.id("menu-cart")).click();
-		return new CartPage(driver);
 	}
 }
